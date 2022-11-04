@@ -1,0 +1,38 @@
+@import '../../variables.scss';
+footer {
+    p {
+        font-size: 15px;
+        margin-bottom: 30px;
+        color: #9394a5;
+
+        &.dark {
+            color: $darkGrayishBlue;
+        }
+
+        &.light {
+            color: $VeryDarkBlue;
+        }
+    }
+
+    .attribution {
+        font-size: 12px;
+        text-align: center;
+        color: $VeryDarkBlue;
+
+        &.dark {
+            color: #9394a5;
+
+            a {
+                color: $white;
+            }
+        }
+
+        &.light {
+            color: $VeryDarkBlue;
+        }
+
+        a {
+            color: blue;
+        }
+    }
+}

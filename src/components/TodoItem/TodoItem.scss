@@ -1,0 +1,147 @@
+@import '../..//variables.scss';
+.section-todo-item {
+    padding: 9px 15px;
+    margin-bottom: 30px;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
+      rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+  
+    &.dark {
+      background: $VeryDarkDesaturatedBlue;
+    }
+  
+    &.light {
+      background: $white;
+    }
+  
+    .row {
+      padding-top: 7px;
+      margin: 10px 0;
+  
+      &.dark {
+        color: $lightGray;
+      }
+  
+      &.light {
+        color: $veryDarkGrayishBlue;
+      }
+  
+      &:not(:last-child) {
+        border-bottom: 1px solid $darkGrayishBlue;
+        padding-bottom: 7px;
+        cursor: pointer;
+      }
+  
+      input[type="checkbox"] {
+        margin-right: 12px;
+        cursor: pointer;
+      }
+  
+      input[type="checkbox"]:checked {
+        accent-color: hsl(280, 87%, 65%);
+      }
+  
+      label {
+        font-size: 15px;
+      }
+  
+      .remove-button {
+        background-color: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        display: none;
+        color: $darkGrayishBlue;
+  
+        @media (max-width: 567px) {
+          display: block;
+        }
+      }
+  
+      &:hover .remove-button {
+        display: block;
+      }
+  
+      &:has(input[type="checkbox"]:checked) {
+        label {
+          text-decoration: line-through;
+          color: $darkGrayishBlue;
+        }
+      }
+    }
+  
+    .control {
+      flex-wrap: wrap;
+  
+      .number-item,
+      .clear-all {
+        font-size: 13px;
+        border: none;
+        background-color: transparent;
+  
+        &.dark {
+          color: $darkGrayishBlue;
+        }
+  
+        &.light {
+          color: #666;
+        }
+      }
+  
+      .clear-all {
+        cursor: pointer;
+  
+        &:hover {
+          &.dark {
+            color: $white;
+          }
+  
+          &.light {
+            color: $veryDarkGrayishBlue;
+          }
+        }
+      }
+  
+      .filter-item {
+        @media (max-width: 567px) {
+          order: 3;
+          flex-basis: 100%;
+          margin-top: 15px;
+          padding-top: 8px;
+          padding-right: 0;
+          padding-left: 0;
+  
+          &.dark {
+            border-top: 2px solid $veryDarkGrayishBlue;
+          }
+  
+          &.light {
+            border-top: 1px solid $darkGrayishBlue;
+          }
+        }
+      }
+  
+      .filter-item>button {
+        margin-left: 2px;
+        font-size: 14px;
+        color: #666;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        text-transform: capitalize;
+  
+        &.active {
+          color: #6e80e3;
+        }
+  
+        &:hover {
+          &.dark {
+            color: $white;
+          }
+  
+          &.light {
+            color: $VeryDarkBlue;
+          }
+        }
+      }
+    }
+  }

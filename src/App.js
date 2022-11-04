@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import { TodosContext } from "./ContextProvider";
+import Result from "./components/Result";
 
+const todosTemplate = [
+  {
+    id: 0,
+    label: "Complete online JavaScript course",
+    checked: true,
+  },
+  {
+    id: 1,
+    label: "Jog around the park 3x",
+    checked: false,
+  },
+  {
+    id: 2,
+    label: "10 minutes meditation",
+    checked: false,
+  },
+  {
+    id: 3,
+    label: "Read for 1 hour",
+    checked: false,
+  },
+  {
+    id: 4,
+    label: "Pick up groceries",
+    checked: false,
+  },
+  {
+    id: 5,
+    label: "Complete Todo App on Frontend Mentor",
+    checked: false,
+  },
+];
 function App() {
+  const [todos, setTodos] = React.useState(todosTemplate);
+  const [darkMode, setDarkMode] = React.useState(false);
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+      <TodosContext.Provider value={{ todos, setTodos,darkMode, toggleTheme }}>
+        <Result /> 
+      </TodosContext.Provider>
     </div>
   );
 }

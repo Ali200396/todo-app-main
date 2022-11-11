@@ -10,6 +10,9 @@ const TodoItem = () => {
   const [showActiveTasks, setShowActiveTasks] = React.useState(false);
   const [showCompletedTasks, setShowCompletedTasks] = React.useState(false);
 
+  const draggedIndex = React.useRef(null);
+  const draggedIntoIndex = React.useRef(null);
+
   const handleDelete = (id) => {
     setTodos(todos.filter((todoItem) => todoItem.id !== id));
   };
@@ -47,9 +50,28 @@ const TodoItem = () => {
       })
     );
   };
-  const todosRender = (todo) => {
+
+  const reorderList = () => {
+    setTodos((prevTasks) => {
+      const draggedItem = prevTasks.splice(draggedIndex.current, 1)[0];
+      prevTasks.splice(draggedIntoIndex.current, 0, draggedItem);
+      draggedIndex.current = null;
+      draggedIntoIndex.current = null;
+      return [...prevTasks];
+    });
+  };
+
+  const todosRender = (todo, index) => {
     return (
-      <div className={`row flex ${darkMode ? "dark" : "light"}`} key={todo.id}>
+      <div
+        className={`row flex ${darkMode ? "dark" : "light"}`}
+        key={todo.id}
+        draggable={true}
+        onDragStart={() => (draggedIndex.current = index)}
+        onDragEnd={reorderList}
+        onDragEnter={() => (draggedIntoIndex.current = index)}
+        onDragOver={(e) => e.preventDefault()}
+      >
         <div>
           <label style={{ display: "none" }}></label>
           <input
@@ -77,18 +99,18 @@ const TodoItem = () => {
   };
   const allTasks =
     todos.length > 0 ? (
-      todos.map((todo) => todosRender(todo))
+      todos.map((todo, i) => todosRender(todo, i))
     ) : (
       <p style={{ color: "#777" }}>
         {" "}
         Looks like you&apos;re absolutely free today!
       </p>
     );
-  const activeTasks = todos.map((todo) =>
-    !todo.checked ? todosRender(todo) : null
+  const activeTasks = todos.map((todo, i) =>
+    !todo.checked ? todosRender(todo, i) : null
   );
-  const completedTasks = todos.map((todo) =>
-    todo.checked ? todosRender(todo) : null
+  const completedTasks = todos.map((todo, i) =>
+    todo.checked ? todosRender(todo, i) : null
   );
   return (
     <>

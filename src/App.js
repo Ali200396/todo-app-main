@@ -43,12 +43,12 @@ function App() {
   };
 
   return (
-    <div className="App">
-     
-      <TodosContext.Provider value={{ todos, setTodos,darkMode, toggleTheme }}>
-        <Result /> 
+    <main className="App">
+      <div className="over"></div>
+      <TodosContext.Provider value={{ todos, setTodos, darkMode, toggleTheme }}>
+        <Result />
       </TodosContext.Provider>
-    </div>
+    </main>
   );
 }
 

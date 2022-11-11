@@ -28,7 +28,6 @@
       &:not(:last-child) {
         border-bottom: 1px solid $darkGrayishBlue;
         padding-bottom: 7px;
-        cursor: pointer;
       }
   
       input[type="checkbox"] {
@@ -42,6 +41,7 @@
   
       label {
         font-size: 15px;
+        cursor:grab;
       }
   
       .remove-button {
@@ -64,7 +64,7 @@
       &:has(input[type="checkbox"]:checked) {
         label {
           text-decoration: line-through;
-          color: $darkGrayishBlue;
+          // color: $darkGrayishBlue;
         }
       }
     }
@@ -123,14 +123,29 @@
       .filter-item>button {
         margin-left: 2px;
         font-size: 14px;
-        color: #666;
         border: none;
         background-color: transparent;
         cursor: pointer;
         text-transform: capitalize;
+        &.dark {
+          color: #9394a5;
+        }
+
+        &.light {
+          color: #666;
+        }
   
         &.active {
-          color: #6e80e3;
+          &.dark {
+            color: #8291e9;
+          }
+  
+          &.light {
+            color: #3e59ed;
+          }
+         
+
+        
         }
   
         &:hover {

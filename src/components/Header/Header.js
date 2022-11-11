@@ -16,7 +16,9 @@ const Header = () => {
     <>
       <header className="flex">
         <div className="over"></div>
-        <div className="logo">Todo</div>
+        <div className="logo">
+          <h1>Todo</h1>
+        </div>
         <button
           className="change-color"
           type="button"
